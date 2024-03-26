@@ -6,7 +6,7 @@ db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS profiles (
     userId TEXT PRIMARY KEY,
     bio TEXT,
-    visibility TEXT
+    visibility TEXT,
     role TEXT
   )`);
 });

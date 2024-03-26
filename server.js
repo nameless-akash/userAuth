@@ -9,6 +9,7 @@ const server = new ApolloServer({
     resolvers,
     context: ({ req }) => {
         // Add the user information from the request to the context
+        console.log("Here: ",req.user)
         return { user: req.user };
     },
 });
