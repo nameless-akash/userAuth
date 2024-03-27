@@ -8,8 +8,6 @@ To get started with using this GraphQL server, follow the instructions below:
 
 1. Clone the repository:
 
-```
-
 ```bash
 git clone https://github.com/nameless-akash/userAuth.git
 ```
@@ -21,7 +19,7 @@ cd userAuth
 npm install
 ```
 
-3. Set up environment variables:
+3. Set up environment variables (optional for now):
 
 Create a `.env` file in the root directory of the project and add any necessary environment variables.
 
