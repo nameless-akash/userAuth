@@ -39,6 +39,7 @@ const typeDefs = gql`
 
     type Query {
         getUserProfile(userId: ID!): Profile!
+        getProfiles: [Profile]
     }
 
     type Mutation {

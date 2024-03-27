@@ -6,10 +6,35 @@ db.serialize(() => {
     db.run(`CREATE TABLE IF NOT EXISTS profiles (
     userId TEXT PRIMARY KEY,
     bio TEXT,
-    visibility TEXT
+    visibility TEXT,
     role TEXT
   )`);
 });
+
+const getAllPublicProfiles = async () => {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM profiles WHERE visibility = "PUBLIC"', (err, rows) => {
+            if (err) {
+                reject(new Error(`Failed to fetch public profiles: ${err.message}`));
+            } else {
+                resolve(rows);
+            }
+        });
+    });
+};
+
+const getAllProfiles = async () => {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM profiles', (err, rows) => {
+            if (err) {
+                reject(new Error(`Failed to fetch public profiles: ${err.message}`));
+            } else {
+                resolve(rows);
+            }
+        });
+    });
+};
+
 
 const getUserProfile = async (userId) => {
     return new Promise((resolve, reject) => {
@@ -76,4 +101,6 @@ module.exports = {
     getUserProfile,
     updateProfileVisibility,
     addUserProfile,
+    getAllPublicProfiles,
+    getAllProfiles
 };

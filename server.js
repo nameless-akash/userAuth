@@ -8,8 +8,14 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: ({ req }) => {
-        // Add the user information from the request to the context
-        return { user: req.user };
+    //TODO: Handle extraction of request user information from header
+    // currently using hardcoded values
+        return { user: {
+                userId: "1",
+                bio: "here we go",
+                visibility: "PRIVATE",
+                role: "NORMAL"
+            } };
     },
 });
 
