@@ -1,8 +1,23 @@
-const { getUserProfile, updateProfileVisibility, addUserProfile } = require('./db');
+const { getUserProfile, updateProfileVisibility, addUserProfile, getAllPublicProfiles, getAllProfiles } = require('./db');
 
 const resolvers = {
-    Query: {
+    Query: {    getProfiles: async (_, __, context) => {
+            if(context.user === undefined){
+                throw new Error("Please, Login first.")
+            }
+
+            if (!context.user || context.user.role === 'ADMIN') {
+                // Admin user can access all profiles
+                return await getAllProfiles();
+            } else {
+                // Normal user can only access public profiles
+                return await getAllPublicProfiles();
+            }
+        },
         getUserProfile: async (_, { userId }, context) => {
+            if(context.user === undefined){
+                throw new Error("Please, Login first.")
+            }
             // Check if the user is authenticated and their role
             if (!context.user || context.user.role === 'NORMAL') {
                 // Normal user can only access public profiles

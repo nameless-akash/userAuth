@@ -11,6 +11,31 @@ db.serialize(() => {
   )`);
 });
 
+const getAllPublicProfiles = async () => {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM profiles WHERE visibility = "PUBLIC"', (err, rows) => {
+            if (err) {
+                reject(new Error(`Failed to fetch public profiles: ${err.message}`));
+            } else {
+                resolve(rows);
+            }
+        });
+    });
+};
+
+const getAllProfiles = async () => {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM profiles', (err, rows) => {
+            if (err) {
+                reject(new Error(`Failed to fetch public profiles: ${err.message}`));
+            } else {
+                resolve(rows);
+            }
+        });
+    });
+};
+
+
 const getUserProfile = async (userId) => {
     return new Promise((resolve, reject) => {
         db.get('SELECT * FROM profiles WHERE userId = ?', [userId], (err, row) => {
@@ -76,4 +101,6 @@ module.exports = {
     getUserProfile,
     updateProfileVisibility,
     addUserProfile,
+    getAllPublicProfiles,
+    getAllProfiles
 };
