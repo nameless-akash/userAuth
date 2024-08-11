@@ -6,7 +6,7 @@ This GraphQL server provides functionality for managing user profiles with authe
 
 To get started with using this GraphQL server, follow the instructions below:
 
-1. Clone the repository:
+1. Clone the repository   :
 
 ```bash
 git clone https://github.com/nameless-akash/userAuth.git
